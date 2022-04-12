@@ -1,6 +1,6 @@
 import Navbar from './navbar'
 
-export default function Header({ children }) {
+export default function Header() {
   return (
     <>
       header

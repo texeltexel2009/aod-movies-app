@@ -1,4 +1,4 @@
-export default function Footer({ children }) {
+export default function Footer() {
   return (
     <>
       footer
