@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Header from './header'
+import Navbar from './navbar'
 import Footer from './footer'
 
 export default function Layout({ children }) {
@@ -9,7 +9,7 @@ export default function Layout({ children }) {
         <title>AOD Movies</title>
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </Head>
-      <Header />
+      <Navbar />
       <main>{children}</main>
       <Footer />
     </>
