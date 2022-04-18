@@ -100,6 +100,14 @@ export default function Navbar() {
                   <div className="flex items-center">
                     <button
                       type="button"
+                      className="bg-gray-50 flex-shrink-0 rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500"
+                    >
+                      <span className="sr-only">Switch theme</span>
+                      <Toggle />
+                    </button>
+                    
+                    <button
+                      type="button"
                       className="bg-gray-50 flex-shrink-0 rounded-full ml-3 p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500"
                     >
                       <span className="sr-only">View favorites</span>
