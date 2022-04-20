@@ -1,8 +1,8 @@
 import { Fragment, useState } from 'react'
-import Toggle from './toggle-dark-mode'
+import Link from 'next/link'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { SearchIcon } from '@heroicons/react/solid'
-import { HeartIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, BellIcon, XIcon } from '@heroicons/react/outline'
 
 const user = {
   name: 'Arman Shahinyan',
@@ -11,8 +11,7 @@ const user = {
     'https://www.gravatar.com/avatar/44fe1a681ee457c7331eb32e540d728c?s=512',
 }
 const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Explore', href: '/explore', current: false },
+  { name: 'Explore', href: '/explore', current: true },
   { name: 'Watchlist', href: '/watchlist', current: false },
   { name: 'Ratings', href: '/ratings', current: false },
 ]
@@ -26,28 +25,30 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar() {  
+export default function Navbar() {
   return (
     <>
       <Disclosure as="nav" className="bg-gray-50">
         {({ open }) => (
           <>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="relative h-16 flex items-center justify-between border-b border-gray-200">
+            <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="relative h-16 flex items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/workflow-mark.svg?color=violet&shade=500"
-                      alt="Workflow"
-                    />
+                    <Link href="/">
+                      <img
+                        className="h-8 w-auto cursor-pointer"
+                        src="/logo-tmdb.svg"
+                        alt="Workflow"
+                      />
+                    </Link>
                   </div>
 
                   {/* Links section */}
                   <div className="hidden lg:block lg:ml-10">
                     <div className="flex space-x-4">
                       {navigation.map((item) => (
-                        <a
+                        <Link
                           key={item.name}
                           href={item.href}
                           className={classNames(
@@ -57,7 +58,7 @@ export default function Navbar() {
                           aria-current={item.current ? 'page' : undefined}
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -103,15 +104,13 @@ export default function Navbar() {
                       className="bg-gray-50 flex-shrink-0 rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500"
                     >
                       <span className="sr-only">Switch theme</span>
-                      <Toggle />
                     </button>
-                    
+
                     <button
                       type="button"
                       className="bg-gray-50 flex-shrink-0 rounded-full ml-3 p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500"
                     >
-                      <span className="sr-only">View favorites</span>
-                      <HeartIcon className="h-6 w-6" aria-hidden="true" />
+                      <span>My Favorites</span>
                     </button>
 
                     {/* Profile dropdown */}
@@ -135,7 +134,7 @@ export default function Navbar() {
                           {userNavigation.map((item) => (
                             <Menu.Item key={item.name}>
                               {({ active }) => (
-                                <a
+                                <Link
                                   href={item.href}
                                   className={classNames(
                                     active ? 'bg-gray-100' : '',
@@ -143,7 +142,7 @@ export default function Navbar() {
                                   )}
                                 >
                                   {item.name}
-                                </a>
+                                </Link>
                               )}
                             </Menu.Item>
                           ))}
@@ -186,7 +185,7 @@ export default function Navbar() {
                     className="ml-auto bg-gray-50 flex-shrink-0 rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500"
                   >
                     <span className="sr-only">View notifications</span>
-                    <HeartIcon className="h-6 w-6" aria-hidden="true" />
+                    <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
                 <div className="mt-3 px-2 space-y-1">
