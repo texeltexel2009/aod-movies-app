@@ -3,7 +3,7 @@ import Link from 'next/link'
 import genSlug from '../../utils/gen-slug'
 import { HeartIcon } from '@heroicons/react/outline'
 
-export default function Card(props) {
+export default function Post(props) {
   const { title, name, id, poster_path, type, popularity, release_date, vote_average } = props;
 
   return (

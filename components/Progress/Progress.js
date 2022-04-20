@@ -1,5 +1,4 @@
 import { useNProgress } from '@tanem/react-nprogress'
-
 import { Bar } from './Bar'
 import { Container } from './Container'
 

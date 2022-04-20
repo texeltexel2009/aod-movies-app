@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { SearchIcon } from '@heroicons/react/solid'
 import { MenuIcon, BellIcon, XIcon } from '@heroicons/react/outline'
+//import NavbarColorModeToggle from './ColorModeToggle'
 
 const user = {
   name: 'Arman Shahinyan',

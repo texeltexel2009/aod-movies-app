@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import Layout from '../components/Layout'
 import { Progress } from '../components/Progress'
 import { useProgressStore } from '../store'
@@ -29,9 +30,14 @@ export default function MyApp ( { Component, pageProps } ) {
   }, [ router ] )
 
   return (
-    <Layout>
-      <Progress isAnimating={isAnimating} />
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <Head>
+        <title>AOD Movies</title>
+      </Head>
+      <Layout>
+        <Progress isAnimating={isAnimating} />
+        <Component {...pageProps} />
+      </Layout>
+    </>
   )
 }
