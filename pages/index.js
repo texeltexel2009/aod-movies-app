@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import tmdb from '../configs/tmdb'
+import Moviescontainer from '../components/CardContainer'
 
 export default function Home() {
   return (
