@@ -7,10 +7,10 @@ export default function Card(props) {
   const { title, name, id, poster_path, type, popularity, release_date, vote_average } = props;
 
   return (
-    <article className="aspect-w-2 aspect-h-3" data-movie-id={id}>
+    <article className="aspect-w-2 aspect-h-3 group" data-movie-id={id}>
       <Link href={`/${type}/${genSlug(title || name, id)}`}>
-        <a className="flex w-full bg-white shadow-md rounded-lg overflow-hidden mx-auto cursor-pointer rounded-xl transform shadow-lg hover:shadow-2xl text-white" href={`/${type}/${genSlug(title || name, id)}`}>
-          <img className="relative block w-full object-cover object-top" src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
+        <a className="flex w-full bg-white shadow-md rounded-lg overflow-hidden mx-auto cursor-pointer rounded-xl transform shadow-lg hover:shadow-2xl text-white">
+          <Image className="relative block w-full object-cover object-top group-hover:scale-110 transition duration-300 ease-in-out" src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} layout='fill' />
           <div className="absolute inset-0 z-10 transition duration-300 ease-in-out bg-gradient-to-t from-[#000000cc] via-[#0000009e] to-transparent"></div>
           <div className="w-full absolute bottom-0 group z-10 p-10 space-y-6">
             <div className="align-self-end w-full">
