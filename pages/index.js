@@ -60,6 +60,7 @@ const Home = ( props ) => {
 }
 
 Home.getInitialProps = async ({ query }) => {
+  // TODO: Add 500 limit as per TMDB limit
   const page = query.page || 1
   const tmdbData = await tmdb.discover( 'movie', [
     {
