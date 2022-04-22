@@ -3,6 +3,7 @@ import { Router, withRouter } from 'next/router'
 import ReactPaginate from 'react-paginate'
 import tmdb from '../configs/tmdb'
 import PostsContainer from '../components/PostsContainer'
+import { ArrowNarrowLeftIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid'
 
 const Home = ( props ) => {
   // When new page selected in paggination, we take current path and query parrams.
@@ -34,20 +35,26 @@ const Home = ( props ) => {
     <>
       {content}
 
-      <ReactPaginate
-        previousLabel={'previous'}
-        nextLabel={'next'}
-        breakLabel={'...'}
-        breakClassName={'break-me'}
-        activeClassName={'active'}
-        containerClassName={'pagination'}
-        subContainerClassName={'pages pagination'}
-        initialPage={props.currentPage - 1}
-        pageCount={props.pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={paginationHandler}
-      />
+      <nav>
+        <ReactPaginate
+          containerClassName={'border-t border-gray-200 px-4 flex items-center justify-between sm:px-0'}
+          previousClassName={'-mt-px w-0 flex-1 flex'}
+          previousLinkClassName={'border-t-2 border-transparent py-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300'}
+          previousLabel={<span className="flex"><ArrowNarrowLeftIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" /> Previous</span>}
+          nextClassName={'-mt-px w-0 flex-1 flex justify-end'}
+          nextLinkClassName={'border-t-2 border-transparent py-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300'}
+          nextLabel={<span className="flex">Next <ArrowNarrowRightIcon className="ml-3 h-5 w-5 text-gray-400" aria-hidden="true" /></span>}
+          breakLabel={'...'}
+          breakClassName={'hidden border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 py-4 px-4 md:inline-flex items-center text-sm font-medium'}
+          pageLinkClassName={'hidden border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 py-4 px-4 md:inline-flex items-center text-sm font-medium'}
+          activeLinkClassName={'border-indigo-500 text-indigo-600'}
+          initialPage={props.currentPage - 1}
+          pageCount={props.pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={paginationHandler}
+        />
+      </nav>
     </>
   )
 }
