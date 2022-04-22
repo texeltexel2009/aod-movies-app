@@ -1,9 +1,8 @@
-import { Fragment, useState } from 'react'
-import Link from 'next/link'
+import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { SearchIcon } from '@heroicons/react/solid'
-import { MenuIcon, BellIcon, XIcon } from '@heroicons/react/outline'
-//import NavbarColorModeToggle from './ColorModeToggle'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import Link from 'next/link';
 
 const user = {
   name: 'Arman Shahinyan',
@@ -15,6 +14,7 @@ const navigation = [
   { name: 'Explore', href: '/explore', current: true },
   { name: 'Watchlist', href: '/watchlist', current: false },
   { name: 'Ratings', href: '/ratings', current: false },
+  { name: 'Favorites', href: '/favorites', current: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -29,12 +29,12 @@ function classNames(...classes) {
 export default function Navbar() {
   return (
     <>
-      <Disclosure as="nav" className="bg-gray-50">
+      <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
             <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="relative h-16 flex items-center justify-between">
-                <div className="flex items-center">
+                <div className="px-2 flex items-center lg:px-0">
                   <div className="flex-shrink-0">
                     <Link href="/">
                       <img
@@ -44,40 +44,38 @@ export default function Navbar() {
                       />
                     </Link>
                   </div>
-
-                  {/* Links section */}
                   <div className="hidden lg:block lg:ml-10">
                     <div className="flex space-x-4">
                       {navigation.map((item) => (
-                        <Link
+                        <a
                           key={item.name}
                           href={item.href}
                           className={classNames(
-                            item.current ? 'bg-gray-100' : 'hover:text-gray-700',
-                            'px-3 py-2 rounded-md text-sm font-medium text-gray-900'
+                            item.current
+                              ? 'bg-indigo-700 text-white'
+                              : 'text-white hover:bg-indigo-500 hover:bg-opacity-75',
+                            'rounded-md py-2 px-3 text-sm font-medium'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
                           {item.name}
-                        </Link>
+                        </a>
                       ))}
                     </div>
                   </div>
                 </div>
-
                 <div className="flex-1 px-2 flex justify-center lg:ml-6 lg:justify-end">
-                  {/* Search section */}
-                  <div className="w-full">
+                  <div className="max-w-lg w-full lg:max-w-xs">
                     <label htmlFor="search" className="sr-only">
                       Search
                     </label>
-                    <div className="relative text-gray-400 focus-within:text-gray-500">
+                    <div className="relative text-gray-400 focus-within:text-gray-600">
                       <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
                         <SearchIcon className="h-5 w-5" aria-hidden="true" />
                       </div>
                       <input
                         id="search"
-                        className="block w-full bg-white py-2 pl-10 pr-3 border border-gray-300 rounded-md leading-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 focus:placeholder-gray-500 sm:text-sm"
+                        className="block w-full bg-white py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white focus:border-white sm:text-sm"
                         placeholder="Search"
                         type="search"
                         name="search"
@@ -87,7 +85,7 @@ export default function Navbar() {
                 </div>
                 <div className="flex lg:hidden">
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="bg-gray-50 p-2 inline-flex items-center justify-center rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500">
+                  <Disclosure.Button className="bg-indigo-600 p-2 rounded-md inline-flex items-center justify-center text-indigo-200 hover:text-white hover:bg-indigo-500 hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -96,28 +94,12 @@ export default function Navbar() {
                     )}
                   </Disclosure.Button>
                 </div>
-
-                {/* Actions section */}
                 <div className="hidden lg:block lg:ml-4">
                   <div className="flex items-center">
-                    <button
-                      type="button"
-                      className="bg-gray-50 flex-shrink-0 rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500"
-                    >
-                      <span className="sr-only">Switch theme</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="bg-gray-50 flex-shrink-0 rounded-full ml-3 p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500"
-                    >
-                      <span>My Favorites</span>
-                    </button>
-
                     {/* Profile dropdown */}
                     <Menu as="div" className="ml-3 relative flex-shrink-0">
                       <div>
-                        <Menu.Button className="bg-gray-50 rounded-full flex text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500">
+                        <Menu.Button className="bg-indigo-600 rounded-full flex text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white">
                           <span className="sr-only">Open user menu</span>
                           <img className="rounded-full h-8 w-8" src={user.imageUrl} alt="" />
                         </Menu.Button>
@@ -135,7 +117,7 @@ export default function Navbar() {
                           {userNavigation.map((item) => (
                             <Menu.Item key={item.name}>
                               {({ active }) => (
-                                <Link
+                                <a
                                   href={item.href}
                                   className={classNames(
                                     active ? 'bg-gray-100' : '',
@@ -143,7 +125,7 @@ export default function Navbar() {
                                   )}
                                 >
                                   {item.name}
-                                </Link>
+                                </a>
                               )}
                             </Menu.Item>
                           ))}
@@ -155,7 +137,7 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Disclosure.Panel className="bg-gray-50 border-b border-gray-200 lg:hidden">
+            <Disclosure.Panel className="lg:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navigation.map((item) => (
                   <Disclosure.Button
@@ -163,8 +145,10 @@ export default function Navbar() {
                     as="a"
                     href={item.href}
                     className={classNames(
-                      item.current ? 'bg-gray-100' : 'hover:bg-gray-100',
-                      'block px-3 py-2 rounded-md font-medium text-gray-900'
+                      item.current
+                        ? 'bg-indigo-700 text-white'
+                        : 'text-white hover:bg-indigo-500 hover:bg-opacity-75',
+                      'block rounded-md py-2 px-3 text-base font-medium'
                     )}
                     aria-current={item.current ? 'page' : undefined}
                   >
@@ -172,22 +156,15 @@ export default function Navbar() {
                   </Disclosure.Button>
                 ))}
               </div>
-              <div className="pt-4 pb-3 border-t border-gray-200">
+              <div className="pt-4 pb-3 border-t border-indigo-700">
                 <div className="px-5 flex items-center">
                   <div className="flex-shrink-0">
                     <img className="rounded-full h-10 w-10" src={user.imageUrl} alt="" />
                   </div>
                   <div className="ml-3">
-                    <div className="text-base font-medium text-gray-800">{user.name}</div>
-                    <div className="text-sm font-medium text-gray-500">{user.email}</div>
+                    <div className="text-base font-medium text-white">{user.name}</div>
+                    <div className="text-sm font-medium text-indigo-300">{user.email}</div>
                   </div>
-                  <button
-                    type="button"
-                    className="ml-auto bg-gray-50 flex-shrink-0 rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500"
-                  >
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
                 </div>
                 <div className="mt-3 px-2 space-y-1">
                   {userNavigation.map((item) => (
@@ -195,7 +172,7 @@ export default function Navbar() {
                       key={item.name}
                       as="a"
                       href={item.href}
-                      className="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100"
+                      className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
                     >
                       {item.name}
                     </Disclosure.Button>
